@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Usuarios Aleatorios</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2196F3">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎲 Generador de Usuarios</h1>
+            <p>Genera nombres, correos y contraseñas aleatorias</p>
+        </div>
+        
+        <div class="content">
+            <div class="button-group">
+                <button id="generateOne" class="btn">
+                    <span class="emoji">👤</span> Generar un usuario
+                </button>
+                
+                <div class="input-group">
+                    <label for="cantidad">Cantidad de usuarios (máx. 50):</label>
+                    <input type="number" id="cantidad" min="1" max="50" value="5">
+                </div>
+                
+                <button id="generateMultiple" class="btn btn-secondary">
+                    <span class="emoji">👥</span> Generar múltiples usuarios
+                </button>
+            </div>
+            
+            <div id="resultados"></div>
+            
+            <button id="clearBtn" class="clear-btn" style="display: none;">
+                🗑️ Limpiar resultados
+            </button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado con éxito:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Error al registrar el Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
